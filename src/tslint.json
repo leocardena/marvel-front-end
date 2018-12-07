@@ -1,0 +1,17 @@
+{
+    "extends": "../tslint.json",
+    "rules": {
+        "directive-selector": [
+            true,
+            "attribute",
+            "marvel-app",
+            "camelCase"
+        ],
+        "component-selector": [
+            true,
+            "element",
+            "marvel-app",
+            "kebab-case"
+        ]
+    }
+}
