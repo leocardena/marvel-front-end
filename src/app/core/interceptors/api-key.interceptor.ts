@@ -6,9 +6,6 @@ import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class ApiKeyInterceptor implements HttpInterceptor {
-
-  constructor () { }
-
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const authReq = req.clone({
       setParams: {

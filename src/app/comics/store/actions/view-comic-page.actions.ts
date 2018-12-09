@@ -1,11 +1,11 @@
 import { Action } from '@ngrx/store';
 
 export enum ViewComicPageActionTypes {
-  LoadViewComicPages = '[ViewComicPage] Load ViewComicPages'
+  SearchComic = '[ViewComicPage] Search Comic'
 }
 
-export class LoadViewComicPages implements Action {
-  readonly type = ViewComicPageActionTypes.LoadViewComicPages;
+export class SearchComic implements Action {
+  readonly type = ViewComicPageActionTypes.SearchComic;
 }
 
-export type ViewComicPageActions = LoadViewComicPages;
+export type ViewComicPageActionsUnion = SearchComic;

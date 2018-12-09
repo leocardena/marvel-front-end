@@ -10,18 +10,22 @@ import { ComicCollectionPageComponent } from '@marvel-app/comics/containers/comi
 import { ComicEffects } from '@marvel-app/comics/store/effects/comic.effects';
 import { MarvelComicsService } from '@marvel-app/comics/services/marvel/marvel-comics.service';
 import * as fromComic from '@marvel-app/comics/store/reducers';
+import { ComicsPreviewListComponent } from '@marvel-app/comics/components/comics-preview-list/comics-preview-list.component';
+import { ComicDetailComponent } from './components/comic-detail/comic-detail.component';
 
 @NgModule({
   imports: [
     CommonModule,
     ComicsRoutingModule,
-    StoreModule.forFeature('comic', fromComic.reducers),
+    StoreModule.forFeature('comics', fromComic.reducers),
     EffectsModule.forFeature([ComicEffects])
   ],
   declarations: [
     FindComicPageComponent,
     ViewComicPageComponent,
-    ComicCollectionPageComponent
+    ComicCollectionPageComponent,
+    ComicsPreviewListComponent,
+    ComicDetailComponent
   ],
   providers: [ MarvelComicsService ]
 })

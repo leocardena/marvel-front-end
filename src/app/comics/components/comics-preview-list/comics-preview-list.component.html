@@ -1,0 +1,3 @@
+<div *ngFor="let comic of comics" >
+  <h4><a [routerLink]="['/comics', comic.id]">{{comic.title}}</a></h4>
+</div>

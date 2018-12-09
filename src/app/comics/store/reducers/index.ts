@@ -5,6 +5,7 @@ import {
 } from '@ngrx/store';
 import * as fromSearch from '@marvel-app/comics/store/reducers/search.reducer';
 import * as fromComics from '@marvel-app/comics/store/reducers/comics.reducer';
+import * as fromRoot from '@marvel-app/store/reducers';
 
 export interface ComicsState {
   comics: fromComics.State;
@@ -17,8 +18,8 @@ export interface State  {
 }
 
 export const reducers: ActionReducerMap<ComicsState, any> = {
-  search: fromSearch.reducer,
   comics: fromComics.reducer,
+  search: fromSearch.reducer,
   collection: undefined
 };
 
@@ -26,3 +27,88 @@ export const reducers: ActionReducerMap<ComicsState, any> = {
  * Selects feature state `comics`
  */
 export const getComicsState = createFeatureSelector<State, ComicsState>('comics');
+
+/**
+ * Select comics entities state
+*/
+export const getComicsEntitiesState = createSelector(
+  getComicsState,
+  state => state.comics
+);
+
+/**
+ * Get selected comics id
+ */
+export const getSelectedComicId = createSelector(
+  getComicsEntitiesState,
+  fromComics.getSelectedId
+);
+
+/**
+ * Default entity selectors
+ */
+export const {
+  selectIds: getComicIds,
+  selectEntities: getComicEntities,
+  selectAll: getAllComics,
+  selectTotal: getTotalComics,
+} = fromComics.adapter.getSelectors(getComicsEntitiesState);
+
+/**
+ * Get selected comic
+ */
+export const getSelectedComic = createSelector(
+  getComicEntities,
+  getSelectedComicId,
+  (entities, selectedId) => selectedId && entities[selectedId]
+);
+
+/**
+ * Get selected comic in router params
+ */
+export const getSelectedComicInRouter = createSelector(
+  getComicEntities,
+  fromRoot.getRouterState,
+  (entities, router) => router.state && entities[router.state.params.id]
+);
+
+/**
+ * Get search comic state
+*/
+export const getSearchState = createSelector(
+  getComicsState,
+  (state: ComicsState) => state.search
+);
+
+/**
+ * Get search comic ids
+ */
+export const getSearchComicIds = createSelector(
+  getSearchState,
+  fromSearch.getIds
+);
+
+/**
+ * Get search comic loading
+ */
+export const getSearchLoading = createSelector(
+  getSearchState,
+  fromSearch.getLoading
+);
+
+/**
+ * Get search comic error
+ */
+export const getSearchError = createSelector(
+  getSearchState,
+  fromSearch.getError
+);
+
+/**
+ * Get searched comics by ids
+ */
+export const getSearchResults = createSelector(
+  getComicEntities,
+  getSearchComicIds,
+  (comics, searchIds) => searchIds.map(id => comics[id])
+);

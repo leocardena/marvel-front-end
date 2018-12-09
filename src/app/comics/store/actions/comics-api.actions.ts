@@ -2,21 +2,38 @@ import { Action } from '@ngrx/store';
 import { Comic } from '@marvel-app/comics/models/comic.model';
 
 export enum ComicsApiActionTypes {
-  SearchSuccess = '[Comics/API] Search Success',
-  SearchFailure = '[Comics/API] Search Failure',
+  SearchAllSuccess = '[Comics/API] Search All Success',
+  SearchAllFailure = '[Comics/API] Search All Failure',
+  SearchOneSuccess = '[Comics/API] Search One Success',
+  SearchOneFailure = '[Comics/API] Search One Failure'
 }
 
-export class SearchSuccess implements Action {
-  readonly type = ComicsApiActionTypes.SearchSuccess;
+export class SearchAllSuccess implements Action {
+  readonly type = ComicsApiActionTypes.SearchAllSuccess;
 
   constructor(public payload: Comic[]) {}
 }
 
-export class SearchFailure implements Action {
-  readonly type = ComicsApiActionTypes.SearchFailure;
+export class SearchAllFailure implements Action {
+  readonly type = ComicsApiActionTypes.SearchAllFailure;
 
   constructor(public payload: any) {}
 }
 
-export type ComicsApiActionsUnion = SearchSuccess
-  | SearchFailure;
+export class SearchOneSuccess implements Action {
+  readonly type = ComicsApiActionTypes.SearchOneSuccess;
+
+  constructor(public payload: Comic) {}
+}
+
+export class SearchOneFailure implements Action {
+  readonly type = ComicsApiActionTypes.SearchOneFailure;
+
+  constructor(public payload: any) {}
+}
+
+export type ComicsApiActionsUnion =
+  | SearchAllSuccess
+  | SearchAllFailure
+  | SearchOneSuccess
+  | SearchOneFailure;
