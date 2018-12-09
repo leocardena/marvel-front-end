@@ -9,7 +9,7 @@
       "projectType": "application",
       "prefix": "marvel-app",
       "schematics": {
-        "@schematics/angular:component": {
+        "@ngrx/schematics:component": {
           "styleext": "scss"
         }
       },
@@ -135,5 +135,8 @@
       }
     }
   },
-  "defaultProject": "marvel-front-end"
+  "defaultProject": "marvel-front-end",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }

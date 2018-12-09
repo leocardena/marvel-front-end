@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { CheckoutPageComponent } from '@marvel-app/cart/checkout-page/checkout-page.component';
+import { CheckoutPageComponent } from '@marvel-app/cart/containers/checkout-page/checkout-page.component';
 
 const routes: Routes = [
   { path: '', component: CheckoutPageComponent }
