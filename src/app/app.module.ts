@@ -36,6 +36,11 @@ import { environment } from '../environments/environment';
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
+      useClass: fromInterceptors.CouponsFakeApiInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
       useClass: fromInterceptors.APIEndpointInterceptor,
       multi: true
     },
