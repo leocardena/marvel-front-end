@@ -5,11 +5,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/comics', pathMatch: 'full' },
   {
     path: 'comics',
-    loadChildren: '@marvel-app/comics/comics.module#ComicsModule',
-  },
-  {
-    path: 'checkout',
-    loadChildren: '@marvel-app/cart/cart.module#CartModule',
+    loadChildren: '@marvel-app/comics/comics.module#ComicsModule'
   }
 ];
 

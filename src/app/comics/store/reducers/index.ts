@@ -5,11 +5,13 @@ import {
 } from '@ngrx/store';
 import * as fromSearch from '@marvel-app/comics/store/reducers/search.reducer';
 import * as fromComics from '@marvel-app/comics/store/reducers/comics.reducer';
+import * as fromCheckout from '@marvel-app/comics/store/reducers/checkout.reducer';
 import * as fromRoot from '@marvel-app/store/reducers';
 
 export interface ComicsState {
   comics: fromComics.State;
   search: fromSearch.State;
+  checkout: fromCheckout.State;
   collection: undefined;
 }
 
@@ -20,6 +22,7 @@ export interface State  {
 export const reducers: ActionReducerMap<ComicsState, any> = {
   comics: fromComics.reducer,
   search: fromSearch.reducer,
+  checkout: fromCheckout.reducer,
   collection: undefined
 };
 
@@ -111,4 +114,37 @@ export const getSearchResults = createSelector(
   getComicEntities,
   getSearchComicIds,
   (comics, searchIds) => searchIds.map(id => comics[id])
+);
+
+/**
+ * Get checkout comic state
+*/
+export const getCheckoutState = createSelector(
+  getComicsState,
+  (state: ComicsState) => state.checkout
+);
+
+/**
+ * Get checkout comics ids
+ */
+export const getCheckoutIds = createSelector(
+  getCheckoutState,
+  fromCheckout.getIds
+);
+
+/**
+ * Get checkout loading
+ */
+export const getCheckoutLoading = createSelector(
+  getCheckoutState,
+  fromCheckout.getLoading
+);
+
+/**
+ * Get cart ids in comics store
+ */
+export const getCheckoutComics = createSelector(
+  getComicEntities,
+  getCheckoutIds,
+  (comics, cartIds) => cartIds.map(id => comics[id])
 );

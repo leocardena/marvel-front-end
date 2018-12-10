@@ -1,4 +1,7 @@
 <p>
   view-comic-page works!
 </p>
-<marvel-app-comic-detail [comic]="selectedComic$ | async"></marvel-app-comic-detail>
+<marvel-app-comic-detail
+  [comic]="selectedComic$ | async"
+  (addToCheckout)="addToCheckout($event)">
+</marvel-app-comic-detail>

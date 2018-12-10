@@ -22,4 +22,8 @@ export class ViewComicPageComponent implements OnInit {
     this.store.dispatch(new ViewComicPageActions.SearchComic());
   }
 
+  addToCheckout(comic: Comic) {
+    this.store.dispatch(new ViewComicPageActions.AddToCheckout(comic));
+  }
+
 }

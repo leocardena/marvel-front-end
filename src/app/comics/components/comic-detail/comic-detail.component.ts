@@ -1,4 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter
+} from '@angular/core';
 import { Comic } from '@marvel-app/comics/models/comic.model';
 
 @Component({
@@ -9,6 +15,7 @@ import { Comic } from '@marvel-app/comics/models/comic.model';
 export class ComicDetailComponent implements OnInit {
 
   @Input() comic: Comic;
+  @Output() addToCheckout = new EventEmitter<Comic>();
 
   constructor() { }
 
