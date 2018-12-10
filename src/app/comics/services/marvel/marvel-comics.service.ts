@@ -24,14 +24,9 @@ export class MarvelComicsService {
    * @param options search options can be formatType, limit and offset
    * @returns an observable of GetBaseResponse<Comic>
    */
-  searchComics(options): Observable<GetBaseResponse<Comic>> {
+  searchComics(params): Observable<GetBaseResponse<Comic>> {
     return this.http
-      .get<{ data: GetBaseResponse<Comic> }>(
-        this.URL,
-        {
-          params: options
-        }
-      )
+      .get<{ data: GetBaseResponse<Comic> }>(this.URL, { params })
       .pipe(map(response => response.data));
   }
 

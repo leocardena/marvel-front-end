@@ -13,12 +13,14 @@ export class CouponsFakeApiInterceptor implements HttpInterceptor {
 
     switch (request.method) {
       case 'POST': {
-        const couponFound = coupons.find(coupon => coupon.value === request.body.value);
-        if (!couponFound) {
+        const { requestCoupon, requestComicRarity } = request.body;
+        const couponFound = coupons.find(coupon => coupon.value === requestCoupon);
+
+        if (!couponFound || couponFound.rarity !== requestComicRarity) {
           return Observable.throw('Bad Request');
         }
 
-        return of(new HttpResponse({ status: 200, body: couponFound }));
+        return of(new HttpResponse({ status: 200 }));
       }
 
       case 'GET': {
