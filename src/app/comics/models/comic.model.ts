@@ -15,4 +15,5 @@ export interface Comic {
   characters: { name: string }[];
   format: string;
   rarity: string;
+  hasDiscount: boolean;
 }

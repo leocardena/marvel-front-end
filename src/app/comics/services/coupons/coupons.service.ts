@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+import { Comic } from '@marvel-app/comics/models/comic.model';
+
 @Injectable()
 export class CouponsService {
 
@@ -24,11 +26,12 @@ export class CouponsService {
  /**
  * Validate the cupon.
  *
- * @param body - coupon infos to validate
+ * @param request - coupon infos to validate
  * @returns http response containing a empty body
  */
-  validateCoupon(body: { coupon: string, comicRarity: string }) {
-    return this.http.post(this.URL, body);
+  validateCoupon(request) {
+    const { coupon, comic: { rarity } } = request;
+    return this.http.post(this.URL, { coupon, comicRarity: rarity });
   }
 
 }

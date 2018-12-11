@@ -15,8 +15,12 @@ export class CouponsFakeApiInterceptor implements HttpInterceptor {
         const { coupon, comicRarity } = request.body;
         const couponFound = coupons.find(c => c.value === coupon);
 
-        if (!couponFound || couponFound.rarity !== comicRarity) {
-          return throwError('Invalid Coupon');
+        if (!couponFound) {
+          return throwError('Not Found');
+        }
+
+        if (!(couponFound.rarity === 'Rare') && couponFound.rarity !== comicRarity) {
+          return throwError('Bad Request');
         }
 
         return of(new HttpResponse({ status: 200 }));

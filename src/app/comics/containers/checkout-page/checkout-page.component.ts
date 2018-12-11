@@ -26,7 +26,10 @@ export class CheckoutPageComponent implements OnInit {
   }
 
   validateCoupon(coupon: string, comic: Comic) {
-    this.store.dispatch(new CheckoutPageActions.ValidateCoupon({ coupon, comicRarity: 'Rare' }));
+    const c: Comic = {} as Comic;
+    c.rarity = 'Common';
+    c.id = '23561';
+    this.store.dispatch(new CheckoutPageActions.ValidateCoupon({ coupon, comic: c }));
   }
 
 }
