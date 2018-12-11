@@ -2,3 +2,7 @@
   checkout-page works!
 </p>
 <marvel-app-checkout-items-list [comics]="comics$ | async"></marvel-app-checkout-items-list>
+
+<ul *ngFor="let coupon of coupons$ | async">
+  <li> {{ coupon }} </li>
+</ul>

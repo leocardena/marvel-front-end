@@ -6,17 +6,17 @@ import { map } from 'rxjs/operators';
 @Injectable()
 export class CouponsService {
 
-  private URL = '/api/coupns';
+  private URL = '/api/coupons';
 
   constructor(private http: HttpClient) { }
 
-  getCoupons(): Observable<string[]> {
+  searchCoupons(): Observable<string[]> {
     return this.http.get(this.URL).pipe(
       map((response: any) => response.results.map(result => result.value))
     );
   }
 
-  validateCoupon(body: { coupon: string, comicRarity: string}) {
+  validateCoupon(body: { coupon: string, comicRarity: string }) {
     return this.http.post(this.URL, body);
   }
 

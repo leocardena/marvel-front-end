@@ -3,7 +3,8 @@ import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 
 import { Comic } from '@marvel-app/comics/models/comic.model';
-import * as fromCheckout from '@marvel-app/comics/store/reducers';
+import * as fromComics from '@marvel-app/comics/store/reducers';
+import {  CheckoutPageActions } from '@marvel-app/comics/store/actions';
 
 @Component({
   selector: 'marvel-app-checkout-page',
@@ -13,11 +14,15 @@ import * as fromCheckout from '@marvel-app/comics/store/reducers';
 export class CheckoutPageComponent implements OnInit {
 
   comics$: Observable<Comic[]>;
+  coupons$: Observable<string[]>;
 
-  constructor(private store: Store<fromCheckout.State>) { }
+  constructor(private store: Store<fromComics.State>) {
+    this.comics$ = this.store.pipe(select(fromComics.getCheckoutComics));
+    this.coupons$ = this.store.pipe(select(fromComics.getCoupons));
+  }
 
   ngOnInit() {
-    this.comics$ = this.store.pipe(select(fromCheckout.getCheckoutComics));
+    this.store.dispatch(new CheckoutPageActions.SearchCoupons());
   }
 
 }

@@ -9,13 +9,12 @@ export interface State {
 
 const initialState: State = {
   ids: [],
-  loading: false
+  loading: false,
 };
 
 export function reducer(
   state = initialState,
-  action:
-    | ViewComicPageActions.ViewComicPageActionsUnion
+  action: ViewComicPageActions.ViewComicPageActionsUnion
 ): State {
   switch (action.type) {
     case ViewComicPageActions.ViewComicPageActionTypes.AddToCheckout:
@@ -31,6 +30,12 @@ export function reducer(
   }
 }
 
+/**
+* Checkout loading
+*/
 export const getLoading = (state: State) => state.loading;
 
+/**
+* Get comics ids in checkout
+*/
 export const getIds = (state: State) => state.ids;

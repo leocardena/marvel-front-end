@@ -6,12 +6,14 @@ import {
 import * as fromSearch from '@marvel-app/comics/store/reducers/search.reducer';
 import * as fromComics from '@marvel-app/comics/store/reducers/comics.reducer';
 import * as fromCheckout from '@marvel-app/comics/store/reducers/checkout.reducer';
+import * as fromCoupons from '@marvel-app/comics/store/reducers/coupons.reducer';
 import * as fromRoot from '@marvel-app/store/reducers';
 
 export interface ComicsState {
   comics: fromComics.State;
   search: fromSearch.State;
   checkout: fromCheckout.State;
+  coupons: fromCoupons.State;
   collection: undefined;
 }
 
@@ -23,6 +25,7 @@ export const reducers: ActionReducerMap<ComicsState, any> = {
   comics: fromComics.reducer,
   search: fromSearch.reducer,
   checkout: fromCheckout.reducer,
+  coupons: fromCoupons.reducer,
   collection: undefined
 };
 
@@ -147,4 +150,36 @@ export const getCheckoutComics = createSelector(
   getComicEntities,
   getCheckoutIds,
   (comics, cartIds) => cartIds.map(id => comics[id])
+);
+
+/**
+ * Get coupons state
+*/
+export const getCouponsState = createSelector(
+  getComicsState,
+  (state: ComicsState) => state.coupons
+);
+
+/**
+ * Get coupons
+ */
+export const getCoupons = createSelector(
+  getCouponsState,
+  fromCoupons.getCoupons
+);
+
+/**
+ * Get coupons validating
+ */
+export const getCouponsValidating = createSelector(
+  getCouponsState,
+  fromCoupons.getValidating
+);
+
+/**
+ * Get coupons loading
+ */
+export const getCouponsLoading = createSelector(
+  getCouponsState,
+  fromCoupons.getLoading
 );

@@ -9,11 +9,13 @@ import { ViewComicPageComponent } from '@marvel-app/comics/containers/view-comic
 import { ComicCollectionPageComponent } from '@marvel-app/comics/containers/comic-collection-page/comic-collection-page.component';
 import { ComicEffects } from '@marvel-app/comics/store/effects/comic.effects';
 import { MarvelComicsService } from '@marvel-app/comics/services/marvel/marvel-comics.service';
+import { CouponsService } from '@marvel-app/comics/services/coupons/coupons.service';
 import * as fromComic from '@marvel-app/comics/store/reducers';
 import { ComicsPreviewListComponent } from '@marvel-app/comics/components/comics-preview-list/comics-preview-list.component';
 import { ComicDetailComponent } from '@marvel-app/comics/components/comic-detail/comic-detail.component';
 import { CheckoutPageComponent } from '@marvel-app/comics/containers/checkout-page/checkout-page.component';
 import { CheckoutItemsListComponent } from '@marvel-app/comics/components/checkout-items-list/checkout-items-list.component';
+import { CouponsEffects } from '@marvel-app/comics/store/effects/coupons.effects';
 
 const COMPONENTS = [
   FindComicPageComponent,
@@ -30,9 +32,15 @@ const COMPONENTS = [
     CommonModule,
     ComicsRoutingModule,
     StoreModule.forFeature('comics', fromComic.reducers),
-    EffectsModule.forFeature([ComicEffects])
+    EffectsModule.forFeature([
+      ComicEffects,
+      CouponsEffects
+    ])
   ],
   declarations: COMPONENTS,
-  providers: [ MarvelComicsService ]
+  providers: [
+    MarvelComicsService,
+    CouponsService
+   ]
 })
 export class ComicsModule { }

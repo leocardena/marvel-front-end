@@ -71,14 +71,16 @@ export function reducer(
 }
 
 /**
- * Searched ids
+* Searched ids
 */
 export const getIds = (state: State) => state.ids;
+
 /**
- * Request loading
+* Request loading
 */
 export const getLoading = (state: State) => state.loading;
+
 /**
- * Request error
+* Request error
 */
 export const getError = (state: State) => state.error;

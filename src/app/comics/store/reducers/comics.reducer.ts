@@ -35,6 +35,6 @@ export function reducer(
 }
 
 /**
- * Get selected comics id
+* Get selected comics id
 */
 export const getSelectedId = (state: State) => state.selectedComicId;
