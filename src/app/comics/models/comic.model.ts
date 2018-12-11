@@ -14,4 +14,5 @@ export interface Comic {
   creators: Creator[];
   characters: { name: string }[];
   format: string;
+  rarity: string;
 }

@@ -27,7 +27,11 @@ export class MarvelComicsService {
   searchComics(params): Observable<GetBaseResponse<Comic>> {
     return this.http
       .get<{ data: GetBaseResponse<Comic> }>(this.URL, { params })
-      .pipe(map(response => response.data));
+      .pipe(map(response => {
+        const baseResponse: GetBaseResponse<Comic> = response.data;
+        baseResponse.results = this.markComicsAsRare(baseResponse.results);
+        return baseResponse;
+      }));
   }
 
   /**
@@ -64,5 +68,52 @@ export class MarvelComicsService {
       take(1)
     );
   }
+
+  /**
+  * Marks the comics as rare at random
+  *
+  * @param comics - the comics
+  * @returns the marked comics
+  */
+  private markComicsAsRare(comics: Comic[]) {
+      const comicsCopy = [...comics];
+      const marked = [];
+
+      // 10 percent
+      const total = Math.floor(comicsCopy.length * 0.1);
+
+      for (let i = 1; i <= total; i++) {
+        const randomIndex = this.randomInteger(0, comicsCopy.length - 1);
+        const comic: Comic = comicsCopy.splice(randomIndex, 1).pop();
+        comic.rarity = 'Rare';
+        marked.push(comic);
+      }
+
+      return [...marked, ...this.markComicsAsCommon(comicsCopy)];
+  }
+
+  /**
+  * Marks the comics as common
+  *
+  * @param comics - the comics
+  * @returns the marked comics
+  */
+  private markComicsAsCommon(comics: Comic[]) {
+    return comics.map(comic => {
+      return { ...comic, rarity: 'Common' };
+    });
+  }
+
+  /**
+  * Get a random integer between min and max.
+  *
+  * @param min - min number
+  * @param max - max number
+  * @returns a random integer
+  */
+  private randomInteger(min: number, max: number) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
+
 }
 
