@@ -29,7 +29,7 @@ export class CouponsEffects {
     switchMap(payload =>
       this.couponsService
         .validateCoupon(payload).pipe(
-          map((response: any) => new ComicsApiActions.ValidateCouponSuccess()),
+          map(() => new ComicsApiActions.ValidateCouponSuccess(payload.comic)),
           catchError(error => of(new ComicsApiActions.ValidateCouponFailure(error)))
         )
     )

@@ -30,8 +30,8 @@ export class CouponsService {
  * @returns http response containing a empty body
  */
   validateCoupon(request) {
-    const { coupon, comic: { rarity } } = request;
-    return this.http.post(this.URL, { coupon, comicRarity: rarity });
+    const { comic: { rarity }, coupon } = request;
+    return this.http.post(this.URL, { comicRarity: rarity, coupon });
   }
 
 }

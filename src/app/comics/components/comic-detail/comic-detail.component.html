@@ -7,7 +7,7 @@
   <button (click)="addToCheckout.emit(comic)" *ngIf="!inCheckout">
     Add Comic to Checkout
   </button>
-  <button *ngIf="inCheckout" >
+  <button (click)="removeFromCheckout.emit(comic)" *ngIf="inCheckout" >
     Remove Comic from Checkout
   </button>
 </div>

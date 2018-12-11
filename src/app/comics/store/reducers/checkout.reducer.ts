@@ -1,5 +1,6 @@
 import {
-  ViewComicPageActions
+  ViewComicPageActions,
+  CheckoutPageActions
 } from '@marvel-app/comics/store/actions';
 
 export interface State {
@@ -14,7 +15,9 @@ export const initialState: State = {
 
 export function reducer(
   state = initialState,
-  action: ViewComicPageActions.ViewComicPageActionsUnion
+  action:
+    | ViewComicPageActions.ViewComicPageActionsUnion
+    | CheckoutPageActions.CheckoutPageActionsUnion
 ): State {
   switch (action.type) {
     case ViewComicPageActions.ViewComicPageActionTypes.AddToCheckout:
@@ -22,6 +25,13 @@ export function reducer(
         ...state,
         ids: state.ids.indexOf(action.payload.id) === -1 ?
           [...state.ids, action.payload.id] : state.ids
+      };
+
+    case ViewComicPageActions.ViewComicPageActionTypes.RemoveFromCheckout:
+    case CheckoutPageActions.CheckoutPageActionTypes.RemoveFromCheckout:
+      return {
+        ...state,
+        ids: state.ids.filter(id => id !== action.payload.id)
       };
 
     default: {

@@ -1,5 +1,9 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
-import { ComicsApiActions } from '@marvel-app/comics/store/actions';
+import {
+  ComicsApiActions,
+  ViewComicPageActions,
+  CheckoutPageActions
+} from '@marvel-app/comics/store/actions';
 import { Comic } from '@marvel-app/comics/models/comic.model';
 
 export interface State extends EntityState<Comic> {
@@ -17,7 +21,10 @@ export const initialState: State = adapter.getInitialState({
 
 export function reducer(
   state = initialState,
-  action: ComicsApiActions.ComicsApiActionsUnion
+  action:
+  | ComicsApiActions.ComicsApiActionsUnion
+  | ViewComicPageActions.ViewComicPageActionsUnion
+  | CheckoutPageActions.CheckoutPageActionsUnion
   ): State {
     switch (action.type) {
       case ComicsApiActions.ComicsApiActionTypes.SearchAllSuccess:
@@ -28,6 +35,27 @@ export function reducer(
           ...adapter.addOne(action.payload, state),
           selectedComicId: action.payload.id
         };
+
+      case ViewComicPageActions.ViewComicPageActionTypes.RemoveFromCheckout:
+      case CheckoutPageActions.CheckoutPageActionTypes.RemoveFromCheckout: {
+        const comic: Comic = { ...action.payload };
+        comic.hasDiscount = false;
+
+        return adapter.updateOne({
+          id: comic.id,
+          changes: comic
+        }, state);
+      }
+
+      case ComicsApiActions.ComicsApiActionTypes.ValidateCouponSuccess: {
+        const comic: Comic = { ...action.payload };
+        comic.hasDiscount = true;
+
+        return adapter.updateOne({
+          id: comic.id,
+          changes: comic
+        }, state);
+      }
 
       default:
         return state;

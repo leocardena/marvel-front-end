@@ -2,6 +2,11 @@
   checkout-items-list works!
 </p>
 <div *ngFor="let comic of comics" >
-    <h4><a [routerLink]="['/comics', comic.id]">{{comic.title}}</a></h4>
+  <h4>{{ comic.title }}</h4>
+  <button (click)="removeComicFromCheckout.emit(comic)">
+    Remove Comic from Checkout
+  </button>
+  <input placeholder="validate coupon" (keydown.enter)="validate(comic, $event.target.value)">
+  <p *ngIf="comic.hasDiscount">DESCONTO</p>
 </div>
 

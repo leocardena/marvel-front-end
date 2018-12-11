@@ -17,6 +17,7 @@ export class ComicDetailComponent implements OnInit {
   @Input() comic: Comic;
   @Input() inCheckout: boolean;
   @Output() addToCheckout = new EventEmitter<Comic>();
+  @Output() removeFromCheckout = new EventEmitter<Comic>();
 
   constructor() { }
 

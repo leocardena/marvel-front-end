@@ -38,6 +38,8 @@ export class SearchOneFailure implements Action {
 
 export class ValidateCouponSuccess implements Action {
   readonly type = ComicsApiActionTypes.ValidateCouponSuccess;
+
+  constructor(public payload: Comic) {}
 }
 
 export class ValidateCouponFailure implements Action {

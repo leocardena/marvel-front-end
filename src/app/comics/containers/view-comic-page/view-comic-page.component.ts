@@ -28,4 +28,8 @@ export class ViewComicPageComponent implements OnInit {
     this.store.dispatch(new ViewComicPageActions.AddToCheckout(comic));
   }
 
+  removeFromCheckout(comic: Comic) {
+    this.store.dispatch(new ViewComicPageActions.RemoveFromCheckout(comic));
+  }
+
 }

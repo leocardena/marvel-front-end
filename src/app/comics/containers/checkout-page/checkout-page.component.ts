@@ -25,11 +25,12 @@ export class CheckoutPageComponent implements OnInit {
     this.store.dispatch(new CheckoutPageActions.SearchCoupons());
   }
 
-  validateCoupon(coupon: string, comic: Comic) {
-    const c: Comic = {} as Comic;
-    c.rarity = 'Common';
-    c.id = '23561';
-    this.store.dispatch(new CheckoutPageActions.ValidateCoupon({ coupon, comic: c }));
+  validateCoupon({ comic, coupon }) {
+    this.store.dispatch(new CheckoutPageActions.ValidateCoupon({ comic, coupon }));
+  }
+
+  removeComicFromCheckout(comic: Comic) {
+    this.store.dispatch(new CheckoutPageActions.RemoveFromCheckout(comic));
   }
 
 }
