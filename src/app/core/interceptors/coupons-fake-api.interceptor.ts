@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-
+import { of, throwError, Observable } from 'rxjs';
 import { coupons } from '@marvel-app/core/utils/coupons.mock';
 
 @Injectable()
@@ -13,11 +12,11 @@ export class CouponsFakeApiInterceptor implements HttpInterceptor {
 
     switch (request.method) {
       case 'POST': {
-        const { requestCoupon, requestComicRarity } = request.body;
-        const couponFound = coupons.find(coupon => coupon.value === requestCoupon);
+        const { coupon, comicRarity } = request.body;
+        const couponFound = coupons.find(c => c.value === coupon);
 
-        if (!couponFound || couponFound.rarity !== requestComicRarity) {
-          return Observable.throw('Bad Request');
+        if (!couponFound || couponFound.rarity !== comicRarity) {
+          return throwError('Bad Request');
         }
 
         return of(new HttpResponse({ status: 200 }));
@@ -29,7 +28,7 @@ export class CouponsFakeApiInterceptor implements HttpInterceptor {
       }
 
       default: {
-        return Observable.throw('Method Not Allowed');
+        return throwError('Method Not Allowed');
       }
 
     }

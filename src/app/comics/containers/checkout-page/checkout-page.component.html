@@ -6,3 +6,4 @@
 <ul *ngFor="let coupon of coupons$ | async">
   <li> {{ coupon }} </li>
 </ul>
+<input matInput placeholder="validate coupon" (keydown.enter)="validateCoupon($event.target.value, undefined)">

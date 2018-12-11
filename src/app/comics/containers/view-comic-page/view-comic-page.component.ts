@@ -13,9 +13,11 @@ import { ViewComicPageActions } from '@marvel-app/comics/store/actions';
 export class ViewComicPageComponent implements OnInit {
 
   selectedComic$: Observable<Comic>;
+  isSelectedComicInCheckout$: Observable<boolean>;
 
   constructor(private store: Store<fromComics.State>) {
     this.selectedComic$ = this.store.pipe(select(fromComics.getSelectedComicInRouter));
+    this.isSelectedComicInCheckout$ = store.pipe(select(fromComics.isSelectedComicInCheckout));
   }
 
   ngOnInit() {

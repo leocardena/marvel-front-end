@@ -14,7 +14,6 @@ export interface ComicsState {
   search: fromSearch.State;
   checkout: fromCheckout.State;
   coupons: fromCoupons.State;
-  collection: undefined;
 }
 
 export interface State  {
@@ -25,8 +24,7 @@ export const reducers: ActionReducerMap<ComicsState, any> = {
   comics: fromComics.reducer,
   search: fromSearch.reducer,
   checkout: fromCheckout.reducer,
-  coupons: fromCoupons.reducer,
-  collection: undefined
+  coupons: fromCoupons.reducer
 };
 
 /**
@@ -150,6 +148,15 @@ export const getCheckoutComics = createSelector(
   getComicEntities,
   getCheckoutIds,
   (comics, cartIds) => cartIds.map(id => comics[id])
+);
+
+/**
+ * Get if selected comic is in the checkout
+ */
+export const isSelectedComicInCheckout = createSelector(
+  getCheckoutIds,
+  getSelectedComicId,
+  (ids, selected) => selected && ids.indexOf(selected) > -1
 );
 
 /**
