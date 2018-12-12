@@ -16,7 +16,7 @@ export class FindComicPageComponent implements OnInit {
 
   constructor(private store: Store<fromComics.State>) {
     this.comics$ = store.pipe(select(fromComics.getSearchResults));
-  }
+  }COr
 
   ngOnInit() {
     this.store.dispatch(new FindComicPageActions.SearchComics());

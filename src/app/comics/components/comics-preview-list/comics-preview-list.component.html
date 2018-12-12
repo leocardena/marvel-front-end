@@ -1,3 +1,11 @@
-<div *ngFor="let comic of comics" >
-  <h4><a [routerLink]="['/comics', comic.id]">{{comic.title}}</a></h4>
-</div>
+<mat-list>
+    <mat-list-item *ngFor="let comic of comics">
+      <img matListAvatar [src]="comic.thumbnail.path + '.' + comic.thumbnail.extension" alt="">
+      <h3 class="mat-h3" matLine>
+        <a [routerLink]="['/comics', comic.id]">{{ comic.title }}</a>
+      </h3>
+      <p matLine>
+        <span> {{ comic.description }} </span>
+      </p>
+    </mat-list-item>
+</mat-list>

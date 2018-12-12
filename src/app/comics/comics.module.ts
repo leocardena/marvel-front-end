@@ -16,6 +16,7 @@ import { ComicDetailComponent } from '@marvel-app/comics/components/comic-detail
 import { CheckoutPageComponent } from '@marvel-app/comics/containers/checkout-page/checkout-page.component';
 import { CheckoutItemsListComponent } from '@marvel-app/comics/components/checkout-items-list/checkout-items-list.component';
 import { CouponsEffects } from '@marvel-app/comics/store/effects/coupons.effects';
+import { MaterialModule } from '@marvel-app/material/material.module';
 
 const COMPONENTS = [
   FindComicPageComponent,
@@ -31,6 +32,7 @@ const COMPONENTS = [
   imports: [
     CommonModule,
     ComicsRoutingModule,
+    MaterialModule,
     StoreModule.forFeature('comics', fromComic.reducers),
     EffectsModule.forFeature([
       ComicEffects,
