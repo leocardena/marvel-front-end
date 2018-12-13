@@ -9,7 +9,7 @@ import { Price } from '@marvel-app/comics/models/price.model';
 export class PricePipe implements PipeTransform {
 
   private priceType = 'printPrice';
-  private privateErrorMessage = 'No momento não há preço do quadrinho impresso';
+  private privateErrorMessage = 'Grátis';
   private currencyCode = 'BRL';
 
   transform(prices: Price[], symbolDisplay: boolean = true, digits?: string): string {
