@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AppRoutingModule } from '@marvel-app/app-routing.module';
 import { LayoutModule } from '@angular/cdk/layout';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { RouterModule } from '@angular/router';
 
 import { AppComponent } from '@marvel-app/core/containers/app/app.component';
 import { MaterialModule } from '@marvel-app/material';
@@ -17,10 +17,11 @@ export const COMPONENTS = [
   declarations: COMPONENTS,
   imports: [
     CommonModule,
-    AppRoutingModule,
+    RouterModule,
     MaterialModule,
     FlexLayoutModule,
     LayoutModule
-  ]
+  ],
+  exports: COMPONENTS
 })
 export class CoreModule { }

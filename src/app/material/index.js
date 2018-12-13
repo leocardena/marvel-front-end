@@ -1,1 +1,1 @@
-export * from './material.module';
+export * from '@marvel-app/material/material.module';

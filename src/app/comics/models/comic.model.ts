@@ -11,7 +11,7 @@ export interface Comic {
   pageCount: number;
   series: { name: string }[];
   prices: Price[];
-  creators: Creator[];
+  creators: { items: Creator[] };
   characters: { name: string }[];
   format: string;
   rarity: string;

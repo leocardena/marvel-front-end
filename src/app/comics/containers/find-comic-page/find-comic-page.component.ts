@@ -13,10 +13,12 @@ import {  FindComicPageActions } from '@marvel-app/comics/store/actions';
 })
 export class FindComicPageComponent implements OnInit {
   comics$: Observable<Comic[]>;
+  loading$: Observable<boolean>;
 
   constructor(private store: Store<fromComics.State>) {
     this.comics$ = store.pipe(select(fromComics.getSearchResults));
-  }COr
+    this.loading$ = store.pipe(select(fromComics.getSearchLoading));
+  }
 
   ngOnInit() {
     this.store.dispatch(new FindComicPageActions.SearchComics());

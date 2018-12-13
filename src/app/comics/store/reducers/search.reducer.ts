@@ -24,11 +24,17 @@ export function reducer(
     | ViewComicPageActions.ViewComicPageActionsUnion
 ): State {
   switch (action.type) {
-    case FindComicPageActions.FindComicPageActionTypes.SearchComics:
     case ViewComicPageActions.ViewComicPageActionTypes.SearchComic:
       return {
         ...state,
         loading: true,
+        error: undefined
+      };
+
+    case FindComicPageActions.FindComicPageActionTypes.SearchComics:
+      return {
+        ...state,
+        loading: state.ids.length <= 1,
         error: undefined
       };
 

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Action, Store, select } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
-import { catchError, map, switchMap, withLatestFrom } from 'rxjs/operators';
+import { catchError, map, switchMap, withLatestFrom, filter } from 'rxjs/operators';
 
 import {
   FindComicPageActions,
@@ -13,6 +13,7 @@ import { MarvelComicsService } from '@marvel-app/comics/services/marvel/marvel-c
 import { GetBaseResponse } from '@marvel-app/shared/models/get-base-response.model';
 import { Comic } from '@marvel-app/comics/models/comic.model';
 import * as fromRoot from '@marvel-app/store/reducers';
+import * as fromComics from '@marvel-app/comics/store/reducers';
 
 @Injectable()
 export class ComicEffects {
@@ -23,10 +24,12 @@ export class ComicEffects {
   @Effect()
   searchComics$: Observable<Action> = this.actions$.pipe(
     ofType(FindComicPageActions.FindComicPageActionTypes.SearchComics),
+    withLatestFrom(this.store.pipe(select(fromComics.getTotalComics))),
+    filter(([action, total]) => total <= 1),
     switchMap(() => {
       const options = {
         offset: 0,
-        limit: 10,
+        limit: 15,
         formatType: 'comic'
       };
       return this.marvelComicsService
@@ -43,7 +46,7 @@ export class ComicEffects {
   @Effect()
   searchComic$: Observable<Action> = this.actions$.pipe(
     ofType(ViewComicPageActions.ViewComicPageActionTypes.SearchComic),
-    withLatestFrom(this.store.pipe(select(fromRoot.getRouterState))),
+    withLatestFrom(this.rootStore.pipe(select(fromRoot.getRouterState))),
     map(([action, router]) => router.state && router.state.params.id),
     switchMap(id => this.marvelComicsService
       .searchComic(id).pipe(
@@ -56,6 +59,7 @@ export class ComicEffects {
   constructor(
     private actions$: Actions,
     private marvelComicsService: MarvelComicsService,
-    private store: Store<fromRoot.State>
+    private rootStore: Store<fromRoot.State>,
+    private store: Store<fromComics.State>,
   ) {}
 }
