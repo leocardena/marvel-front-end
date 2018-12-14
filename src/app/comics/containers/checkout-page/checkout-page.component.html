@@ -1,12 +1,19 @@
-<p>
-  checkout-page works!
-</p>
-<marvel-app-checkout-items-list
-  [comics]="comics$ | async"
-  (validateCoupon)="validateCoupon($event)"
-  (removeComicFromCheckout)="removeComicFromCheckout($event)">
-</marvel-app-checkout-items-list>
+<mat-card class="card-container">
+    <mat-card-header>
+        <mat-card-title text-center>Checkout</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <marvel-app-checkout-items-list
+        [comics]="comics$ | async"
+        (validateCoupon)="validateCoupon($event)"
+        (removeComicFromCheckout)="removeComicFromCheckout($event)">
+      </marvel-app-checkout-items-list>
+    </mat-card-content>
+    <mat-card-footer>
+      <p>Total do Checkout: </p> {{ totalPrice$ | async | currency:'BRL' }}
+    </mat-card-footer>
+</mat-card>
 
-<ul *ngFor="let coupon of coupons$ | async">
+<!--<ul *ngFor="let coupon of coupons$ | async">
   <li> {{ coupon }} </li>
-</ul>
+</ul>-->

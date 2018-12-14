@@ -8,4 +8,5 @@ import { Component, Input } from '@angular/core';
 })
 export class ComicsPreviewListComponent {
   @Input() comics: Comic[];
+  @Input() isLoading: boolean;
 }

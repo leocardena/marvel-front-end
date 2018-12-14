@@ -1,12 +1,25 @@
-<p>
-  checkout-items-list works!
-</p>
-<div *ngFor="let comic of comics" >
-  <h4>{{ comic.title }}</h4>
-  <button (click)="removeComicFromCheckout.emit(comic)">
-    Remove Comic from Checkout
-  </button>
-  <input placeholder="validate coupon" (keydown.enter)="validate(comic, $event.target.value)">
-  <p *ngIf="comic.hasDiscount">DESCONTO</p>
+<div *ngIf="comics.length > 0; else emptyCheckout">
+    <mat-list>
+        <mat-list-item class="checkout-mat-list-item" *ngFor="let comic of comics">
+          <img class="checkout-avatar" matListAvatar [src]="comic.thumbnail.path + '.' + comic.thumbnail.extension">
+          <div class="comic-general-info<!--  -->">
+              <h4>{{ comic.title }}</h4>
+              <p class="comic-writers"> {{ comic.creators.items | creators:'writer':'Escritor' }} </p>
+              <mat-chip class="comic-rarity" color="primary" selected>Rare</mat-chip>
+          </div>
+          <div class="comic-pricing">
+              <p class="price"> {{ comic.prices | price }} </p>
+              <input placeholder="validate coupon" (keydown.enter)="validate(comic, $event.target.value)">
+          </div>
+          <button mat-icon-button (click)="removeComicFromCheckout.emit(comic)">
+              <mat-icon>info</mat-icon>
+          </button>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+    </mat-list>
 </div>
+<ng-template #emptyCheckout>
+  <p>Não há quadrinhos para checkout</p>
+</ng-template>
+
 

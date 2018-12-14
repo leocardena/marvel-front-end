@@ -5,7 +5,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from '@marvel-app/core/containers/app/app.component';
-import { MaterialModule } from '@marvel-app/material';
+import { MaterialModule } from '@marvel-app/material/material.module';
 import { LayoutComponent } from '@marvel-app/core/components/layout/layout.component';
 
 export const COMPONENTS = [

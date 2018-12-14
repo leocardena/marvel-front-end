@@ -6,7 +6,6 @@ import { StoreModule } from '@ngrx/store';
 import { ComicsRoutingModule } from '@marvel-app/comics/comics-routing.module';
 import { FindComicPageComponent } from '@marvel-app/comics/containers/find-comic-page/find-comic-page.component';
 import { ViewComicPageComponent } from '@marvel-app/comics/containers/view-comic-page/view-comic-page.component';
-import { ComicCollectionPageComponent } from '@marvel-app/comics/containers/comic-collection-page/comic-collection-page.component';
 import { ComicEffects } from '@marvel-app/comics/store/effects/comic.effects';
 import { MarvelComicsService } from '@marvel-app/comics/services/marvel/marvel-comics.service';
 import { CouponsService } from '@marvel-app/comics/services/coupons/coupons.service';
@@ -22,7 +21,6 @@ import { PipesModule } from '@marvel-app/shared/pipes';
 const COMPONENTS = [
   FindComicPageComponent,
   ViewComicPageComponent,
-  ComicCollectionPageComponent,
   ComicsPreviewListComponent,
   ComicDetailComponent,
   CheckoutPageComponent,

@@ -1,8 +1,15 @@
-<mat-nav-list>
-    <a mat-list-item class="preview-mat-list-item" *ngFor="let comic of comics" [routerLink]="['/comics', comic.id]">
-      <img class="preview-list-avatar" matListAvatar [src]="comic.thumbnail.path + '.' + comic.thumbnail.extension">
-        <h2 matLine>{{ comic.title }}</h2>
-        <p matLine> {{ comic.creators.items | creators:'writer':'Escritor' }} </p>
-        <p matLine> {{ comic.prices | price }} </p>
-    </a>
-</mat-nav-list>
+<div *ngIf="!isLoading; else loadingSpinner">
+    <mat-nav-list>
+        <a mat-list-item class="preview-mat-list-item" *ngFor="let comic of comics" [routerLink]="['/comics', comic.id]">
+          <img class="preview-list-avatar" matListAvatar [src]="comic.thumbnail.path + '.' + comic.thumbnail.extension">
+            <h2 matLine>{{ comic.title }}</h2>
+            <p matLine> {{ comic.creators.items | creators:'writer':'Escritor' }} </p>
+            <p matLine> {{ comic.prices | price }} </p>
+        </a>
+    </mat-nav-list>
+</div>
+<ng-template #loadingSpinner>
+    <div class="spinner-container">
+        <mat-spinner></mat-spinner>
+    </div>
+</ng-template>

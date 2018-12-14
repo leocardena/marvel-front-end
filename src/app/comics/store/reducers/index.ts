@@ -160,6 +160,32 @@ export const isSelectedComicInCheckout = createSelector(
 );
 
 /**
+ * Get total checkout price
+ */
+export const getTotalCheckoutPrice = createSelector(
+  getComicEntities,
+  getCheckoutIds,
+  (comics, cartIds) =>
+    cartIds
+        .map(id => {
+          const comic = comics[id];
+
+          if (comic) {
+            const printPrices = comic.prices.filter(price => price.type === 'printPrice');
+
+            if (printPrices.length <= 0) {
+              return 0;
+            }
+
+            return printPrices[0].price;
+          }
+
+          return 0;
+      })
+    .reduce((prev, curr) => prev + curr)
+);
+
+/**
  * Get coupons state
 */
 export const getCouponsState = createSelector(

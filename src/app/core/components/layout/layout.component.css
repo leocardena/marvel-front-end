@@ -15,14 +15,3 @@
   top: 0;
   z-index: 1;
 }
-
-.card-container {
-  min-height: 100%;
-  margin: 3em 0 3em 0;
-}
-
-md-card {
-  padding: 0px;
-}
-
-

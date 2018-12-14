@@ -15,10 +15,12 @@ export class CheckoutPageComponent implements OnInit {
 
   comics$: Observable<Comic[]>;
   coupons$: Observable<string[]>;
+  totalPrice$: Observable<number>;
 
   constructor(private store: Store<fromComics.State>) {
     this.comics$ = this.store.pipe(select(fromComics.getCheckoutComics));
     this.coupons$ = this.store.pipe(select(fromComics.getCoupons));
+    this.totalPrice$ = this.store.pipe(select(fromComics.getTotalCheckoutPrice));
   }
 
   ngOnInit() {
