@@ -1,13 +1,38 @@
-<p>
-  comic-detail works!
-</p>
-<div *ngIf="comic">
-  <h2>{{ comic.title }}</h2>
-  <p>{{ comic.description }}</p>
-  <button (click)="addToCheckout.emit(comic)" *ngIf="!inCheckout">
-    Add Comic to Checkout
-  </button>
-  <button (click)="removeFromCheckout.emit(comic)" *ngIf="inCheckout" >
-    Remove Comic from Checkout
-  </button>
+<div *ngIf="comic" fxLayout="column" fxFlexFill fxLayoutGap="1em">
+    <div fxLayout="row">
+        <a  mat-raised-button [routerLink]="['/comics']">Voltar</a>
+    </div>
+
+      <div fxLayout="row">
+          <div fxFlex="100%" class="sec1">
+              <div fxLayout="row" fxLayoutGap="1em">
+                  <h2>{{ comic.title }}</h2>
+              </div>
+              <p>{{ comic.creators.items | creators:'writer':'Escritor' }}</p>
+          </div>
+      </div>
+
+      <div class="content"
+           fxLayout="row"
+           fxLayout.xs="column"
+           fxLayout.sm="column"
+           fxLayoutGap="1em"
+           fxFlexFill fxLayoutAlign="start start">
+
+          <div fxFlex="0 0 0">
+              <img class="detail-list-avatar" matListAvatar [src]="comic.thumbnail.path + '.' + comic.thumbnail.extension">
+              <div class="rarity-box" fxLayoutAlign="center center">
+                 {{ comic.rarity }}
+              </div>
+          </div>
+          <div fxFlex="1 1 50%">
+              <p class="info-start"><strong>Formato: </strong> {{ comic.format }}</p>
+              <p><strong>Numero de Paginas: </strong> {{ comic.pageCount }}</p>
+              <p>
+                <strong>Descricao: </strong>
+                <span [innerHTML]="comic.description"></span>
+              </p>
+              <div [innerHTML]=""></div>
+          </div>
+      </div>
 </div>

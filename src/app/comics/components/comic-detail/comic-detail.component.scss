@@ -1,0 +1,21 @@
+.detail-list-avatar {
+    border-radius: 0 !important;
+    width: 9em !important;
+    height: 12em !important;
+    object-fit: fill !important;
+}
+
+p {
+  margin-block-start: 0.5em;
+  margin-block-end: unset;
+}
+
+.info-start, h2 {
+  margin-block-start: unset;
+  margin-block-end: unset;
+}
+
+.rarity-box {
+  background: #663399;
+  min-height: 22px;
+}

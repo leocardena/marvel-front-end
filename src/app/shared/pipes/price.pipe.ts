@@ -9,22 +9,22 @@ import { Price } from '@marvel-app/comics/models/price.model';
 export class PricePipe implements PipeTransform {
 
   private priceType = 'printPrice';
-  private privateErrorMessage = 'Grátis';
+  private freeComicMessage = 'Grátis';
   private currencyCode = 'BRL';
 
   transform(prices: Price[], symbolDisplay: boolean = true, digits?: string): string {
     if (!prices) {
-      return this.privateErrorMessage;
+      return this.freeComicMessage;
     }
 
-    const newPrices = prices.filter(price => price.type === this.priceType);
+    const printPrices = prices.filter(price => price.type === this.priceType);
 
-    if (newPrices.length <= 0 || newPrices[0].price <= 0)  {
-      return this.privateErrorMessage;
+    if (printPrices.length <= 0 || printPrices[0].price <= 0)  {
+      return this.freeComicMessage;
     }
 
     const currencyPipe: CurrencyPipe = new CurrencyPipe('pt');
-    const newValue: string = currencyPipe.transform(newPrices[0].price, this.currencyCode, symbolDisplay, digits);
+    const newValue: string = currencyPipe.transform(printPrices[0].price, this.currencyCode, symbolDisplay, digits);
 
     return newValue;
   }

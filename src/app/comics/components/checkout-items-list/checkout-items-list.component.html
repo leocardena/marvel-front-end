@@ -1,25 +1,31 @@
 <div *ngIf="comics.length > 0; else emptyCheckout">
-    <mat-list>
-        <mat-list-item class="checkout-mat-list-item" *ngFor="let comic of comics">
-          <img class="checkout-avatar" matListAvatar [src]="comic.thumbnail.path + '.' + comic.thumbnail.extension">
-          <div class="comic-general-info<!--  -->">
+  <mat-list>
+      <mat-list-item
+        fxLayout="row"
+        fxLayout.xs="column"
+        fxLayoutGap="20px"
+        fxLayoutAlign="center"
+        class="checkout-list-item"
+        *ngFor="let comic of comics">
+          <img fxFlex="1 1 10%" matListAvatar class="checkout-avatar" [src]="comic.thumbnail.path + '.' + comic.thumbnail.extension">
+          <div fxFlex="1 2 40%" fxLayout="column" class="comic-general-info">
               <h4>{{ comic.title }}</h4>
-              <p class="comic-writers"> {{ comic.creators.items | creators:'writer':'Escritor' }} </p>
-              <mat-chip class="comic-rarity" color="primary" selected>Rare</mat-chip>
+              <p> {{ comic.creators.items | creators:'writer':'Escritor' }} </p>
+              <mat-chip-list class="checkout-chip-list">
+                <mat-chip class="checkout-mat-chip" color="primary" selected>{{ comic.rarity }}</mat-chip>
+              </mat-chip-list>
           </div>
-          <div class="comic-pricing">
+          <div fxFlex="1 2 40%" fxLayout="column">
               <p class="price"> {{ comic.prices | price }} </p>
               <input placeholder="validate coupon" (keydown.enter)="validate(comic, $event.target.value)">
           </div>
-          <button mat-icon-button (click)="removeComicFromCheckout.emit(comic)">
+          <button fxFlex="1 3 10%" mat-icon-button (click)="removeComicFromCheckout.emit(comic)">
               <mat-icon>info</mat-icon>
           </button>
-        </mat-list-item>
+      </mat-list-item>
         <mat-divider></mat-divider>
-    </mat-list>
+  </mat-list>
 </div>
 <ng-template #emptyCheckout>
   <p>Não há quadrinhos para checkout</p>
 </ng-template>
-
-

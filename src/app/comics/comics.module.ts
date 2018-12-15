@@ -17,6 +17,7 @@ import { CheckoutItemsListComponent } from '@marvel-app/comics/components/checko
 import { CouponsEffects } from '@marvel-app/comics/store/effects/coupons.effects';
 import { MaterialModule } from '@marvel-app/material/material.module';
 import { PipesModule } from '@marvel-app/shared/pipes';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 const COMPONENTS = [
   FindComicPageComponent,
@@ -33,6 +34,7 @@ const COMPONENTS = [
     ComicsRoutingModule,
     PipesModule,
     MaterialModule,
+    FlexLayoutModule,
     StoreModule.forFeature('comics', fromComic.reducers),
     EffectsModule.forFeature([
       ComicEffects,

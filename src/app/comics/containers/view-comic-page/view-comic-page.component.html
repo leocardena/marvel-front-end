@@ -1,10 +1,11 @@
-<p>
-  view-comic-page works!
-</p>
-<marvel-app-comic-detail
-  [comic]="selectedComic$ | async"
-  [inCheckout]="isSelectedComicInCheckout$ | async"
-  (addToCheckout)="addToCheckout($event)"
-  (removeFromCheckout)="removeFromCheckout($event)">
-</marvel-app-comic-detail>
-<h4><a [routerLink]="['/comics']">Voltar</a></h4>
+<mat-card class="card-container">
+  <mat-card-content>
+    <marvel-app-comic-detail
+      [comic]="selectedComic$ | async"
+      [inCheckout]="isSelectedComicInCheckout$ | async"
+      (addToCheckout)="addToCheckout($event)"
+      (removeFromCheckout)="removeFromCheckout($event)">
+  </marvel-app-comic-detail>
+  </mat-card-content>
+</mat-card>
+

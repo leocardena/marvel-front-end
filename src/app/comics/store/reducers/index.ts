@@ -182,7 +182,7 @@ export const getTotalCheckoutPrice = createSelector(
 
           return 0;
       })
-    .reduce((prev, curr) => prev + curr)
+    .reduce((prev, curr) => prev + curr, 0)
 );
 
 /**
