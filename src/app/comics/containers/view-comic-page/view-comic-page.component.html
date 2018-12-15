@@ -2,7 +2,7 @@
   <mat-card-content>
     <marvel-app-comic-detail
       [comic]="selectedComic$ | async"
-      [inCheckout]="isSelectedComicInCheckout$ | async"
+      [isSelectedComicInCheckout]="isSelectedComicInCheckout$ | async"
       (addToCheckout)="addToCheckout($event)"
       (removeFromCheckout)="removeFromCheckout($event)">
   </marvel-app-comic-detail>

@@ -15,7 +15,7 @@ import { Comic } from '@marvel-app/comics/models/comic.model';
 export class ComicDetailComponent implements OnInit {
 
   @Input() comic: Comic;
-  @Input() inCheckout: boolean;
+  @Input() isSelectedComicInCheckout: boolean;
   @Output() addToCheckout = new EventEmitter<Comic>();
   @Output() removeFromCheckout = new EventEmitter<Comic>();
 

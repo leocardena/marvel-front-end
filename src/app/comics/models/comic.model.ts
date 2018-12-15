@@ -10,6 +10,7 @@ export interface Comic {
   images: Image[];
   pageCount: number;
   series: { name: string }[];
+  dates: { type: string, date: Date }[];
   prices: Price[];
   creators: { items: Creator[] };
   characters: { name: string }[];

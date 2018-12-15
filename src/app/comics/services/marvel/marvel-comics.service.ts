@@ -12,6 +12,8 @@ import * as fromComics from '@marvel-app/comics/store/reducers';
 export class MarvelComicsService {
 
   private URL = '/comics';
+  private commonRarity = 'Common';
+  private rareRarity = 'Rare';
 
   constructor(
     private http: HttpClient,
@@ -51,7 +53,13 @@ export class MarvelComicsService {
 
         return this.http
           .get<{ data: GetBaseResponse<Comic> }>(`${this.URL}/${comicId}`)
-          .pipe(map(response => response.data));
+          .pipe(map(response => {
+            const baseResponse: GetBaseResponse<Comic> = response.data;
+            const comic: Comic = baseResponse.results[0];
+            comic.rarity = this.commonRarity;
+            baseResponse.results = [comic];
+            return baseResponse;
+          }));
       })
     );
   }
@@ -85,7 +93,7 @@ export class MarvelComicsService {
       for (let i = 1; i <= total; i++) {
         const randomIndex = this.randomInteger(0, comicsCopy.length - 1);
         const comic: Comic = comicsCopy.splice(randomIndex, 1).pop();
-        comic.rarity = 'Rare';
+        comic.rarity = this.rareRarity;
         marked.push(comic);
       }
 
