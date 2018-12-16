@@ -14,10 +14,12 @@ export class ViewComicPageComponent implements OnInit {
 
   selectedComic$: Observable<Comic>;
   isSelectedComicInCheckout$: Observable<boolean>;
+  isLoading$: Observable<boolean>;
 
   constructor(private store: Store<fromComics.State>) {
-    this.selectedComic$ = this.store.pipe(select(fromComics.getSelectedComicInRouter));
+    this.selectedComic$ = store.pipe(select(fromComics.getSelectedComicInRouter));
     this.isSelectedComicInCheckout$ = store.pipe(select(fromComics.isSelectedComicInCheckout));
+    this.isLoading$ = store.pipe(select(fromComics.getSearchLoading));
   }
 
   ngOnInit() {

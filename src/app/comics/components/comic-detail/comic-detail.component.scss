@@ -20,6 +20,13 @@ h2 {
   min-height: 22px;
 }
 
+.spinner-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+}
+
 @media screen and (min-width: 599px) {
   .price-box {
     margin-left: auto;

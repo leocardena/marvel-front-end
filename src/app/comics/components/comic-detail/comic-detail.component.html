@@ -1,4 +1,4 @@
-<div *ngIf="comic" fxLayoutAlign="center" fxLayout="column" fxFlexFill fxLayoutGap="1em">
+<div *ngIf="!isLoading; else loadingComic" fxLayoutAlign="center" fxLayout="column" fxFlexFill fxLayoutGap="1em">
     <div fxLayout="row" fxFlexAlign.xs="center">
         <a  mat-raised-button [routerLink]="['/comics']">Voltar</a>
     </div>
@@ -37,3 +37,8 @@
       </div>
   </div>
 </div>
+<ng-template #loadingComic>
+  <div class="spinner-container">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>

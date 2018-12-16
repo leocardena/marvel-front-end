@@ -3,6 +3,7 @@
     <marvel-app-comic-detail
       [comic]="selectedComic$ | async"
       [isSelectedComicInCheckout]="isSelectedComicInCheckout$ | async"
+      [isLoading]="isLoading$ | async"
       (addToCheckout)="addToCheckout($event)"
       (removeFromCheckout)="removeFromCheckout($event)">
   </marvel-app-comic-detail>
