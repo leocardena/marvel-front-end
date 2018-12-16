@@ -12,7 +12,7 @@ export class PricePipe implements PipeTransform {
   private freeComicMessage = 'Grátis';
   private currencyCode = 'BRL';
 
-  transform(prices: Price[], symbolDisplay: boolean = true, digits?: string): string {
+  transform(prices: Price[], discount?: number): string {
     if (!prices) {
       return this.freeComicMessage;
     }
@@ -23,10 +23,20 @@ export class PricePipe implements PipeTransform {
       return this.freeComicMessage;
     }
 
+
+
     const currencyPipe: CurrencyPipe = new CurrencyPipe('pt');
-    const newValue: string = currencyPipe.transform(printPrices[0].price, this.currencyCode, symbolDisplay, digits);
+    const newPrice = discount ? this.applyDiscount(printPrices[0].price, discount) : printPrices[0].price;
+    const newValue: string = currencyPipe.transform(newPrice, this.currencyCode);
 
     return newValue;
+  }
+
+  /**
+   * Applies a discount percentage
+   */
+  private applyDiscount(price: number, discount: number) {
+    return price - (price * (discount / 100));
   }
 
 }

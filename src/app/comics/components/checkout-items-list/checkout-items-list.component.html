@@ -1,31 +1,41 @@
 <div *ngIf="comics.length > 0; else emptyCheckout">
   <mat-list>
-      <mat-list-item
+      <mat-list-item class="comic-list-item"
+        fxLayoutAlign="start start"
         fxLayout="row"
         fxLayout.xs="column"
-        fxLayoutGap="20px"
-        fxLayoutAlign="center"
-        class="checkout-list-item"
+        fxFlexFill
+        fxLayoutGap="3em"
         *ngFor="let comic of comics">
-          <img fxFlex="1 1 10%" matListAvatar class="checkout-avatar" [src]="comic.thumbnail.path + '.' + comic.thumbnail.extension">
-          <div fxFlex="1 2 40%" fxLayout="column" class="comic-general-info">
-              <h4>{{ comic.title }}</h4>
-              <p> {{ comic.creators.items | creators:'writer':'Escritor' }} </p>
-              <mat-chip-list class="checkout-chip-list">
-                <mat-chip class="checkout-mat-chip" color="primary" selected>{{ comic.rarity }}</mat-chip>
-              </mat-chip-list>
-          </div>
-          <div fxFlex="1 2 40%" fxLayout="column">
-              <p class="price"> {{ comic.prices | price }} </p>
-              <input placeholder="validate coupon" (keydown.enter)="validate(comic, $event.target.value)">
-          </div>
-          <button fxFlex="1 3 10%" mat-icon-button (click)="removeComicFromCheckout.emit(comic)">
-              <mat-icon>info</mat-icon>
-          </button>
+        <div fxLayout="row"
+          fxFlex="1 1 80%"
+          fxLayout.xs="column"
+          fxFlexAlign.xs="center"
+          fxLayoutGap="1em"
+          fxFlexFill fxLayoutAlign="start start">
+            <img matListAvatar class="checkout-avatar" [src]="comic.thumbnail.path + '.' + comic.thumbnail.extension">
+            <div fxFlex="1 1 35%" fxLayout="column" fxFlexFill>
+                <h4>{{ comic.title }}</h4>
+                <p>{{ comic.creators.items | creators:'writer':'Escritor' }} </p>
+                <p>Raridade: {{ comic.rarity }}</p>
+            </div>
+            <div fxFlex="0 0 35%" fxFlexAlign.xs="center" fxLayout="column">
+                <mat-form-field *ngIf="(comic.prices | price) !== 'Grátis' && !comic.hasDiscount" class="coupon-input-wrapper" floatLabel="never" fxFlexFill>
+                  <input class="coupon-input" matInput placeholder="Insira o cupom [ENTER]"
+                    (keydown.enter)="validate(comic, $event.target.value)">
+                </mat-form-field>
+                <p *ngIf="comic.hasDiscount" class="text-center">Desconto Aplicado</p>
+            </div>
+        </div>
+        <div fxFlexAlign.xs="start" fxLayout="row" fxFlex="1 1 20%" fxFlexAlign="start" fxLayoutAlign="flex-end" fxLayoutGap="2em" fxFlexFill>
+            <p> {{ comic.prices | price:(comic.hasDiscount ? discountPercentage : undefined) }} </p>
+            <button mat-icon-button (click)="removeComicFromCheckout.emit(comic)">
+                <mat-icon class="btn-delete-icon">delete</mat-icon>
+            </button>
+        </div>
       </mat-list-item>
-        <mat-divider></mat-divider>
   </mat-list>
 </div>
 <ng-template #emptyCheckout>
-  <p>Não há quadrinhos para checkout</p>
+  <p class="text-center">Não há quadrinhos para checkout</p>
 </ng-template>

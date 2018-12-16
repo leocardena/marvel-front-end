@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
 import { Comic } from '@marvel-app/comics/models/comic.model';
+import { Coupon } from '@marvel-app/comics/models/coupon.model';
 
 export enum ComicsApiActionTypes {
   SearchAllSuccess = '[Comics/API] Search All Success',
@@ -51,7 +52,7 @@ export class ValidateCouponFailure implements Action {
 export class SearchCouponsSuccess implements Action {
   readonly type = ComicsApiActionTypes.SearchCouponsSuccess;
 
-  constructor(public payload: string[]) {}
+  constructor(public payload: Coupon[]) {}
 }
 
 export class SearchCouponsFailure implements Action {

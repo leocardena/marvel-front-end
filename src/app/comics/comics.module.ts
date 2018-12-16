@@ -18,6 +18,8 @@ import { CouponsEffects } from '@marvel-app/comics/store/effects/coupons.effects
 import { MaterialModule } from '@marvel-app/material/material.module';
 import { PipesModule } from '@marvel-app/shared/pipes';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { CouponsPageComponent } from '@marvel-app/comics/containers/coupons-page/coupons-page.component';
+import { CouponsListComponent } from '@marvel-app/comics/components/coupons-list/coupons-list.component';
 
 const COMPONENTS = [
   FindComicPageComponent,
@@ -25,7 +27,9 @@ const COMPONENTS = [
   ComicsPreviewListComponent,
   ComicDetailComponent,
   CheckoutPageComponent,
-  CheckoutItemsListComponent
+  CheckoutItemsListComponent,
+  CouponsPageComponent,
+  CouponsListComponent
 ];
 
 @NgModule({

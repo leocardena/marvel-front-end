@@ -1,0 +1,9 @@
+<mat-list>
+  <mat-list-item *ngFor="let coupons of coupons">
+    <mat-icon matListIcon>local_offer</mat-icon>
+    <h3 matLine> Código: {{ coupons.value }} </h3>
+    <p matLine>
+      <span> Tipo: {{ coupons.rarity }} </span>
+    </p>
+  </mat-list-item>
+</mat-list>

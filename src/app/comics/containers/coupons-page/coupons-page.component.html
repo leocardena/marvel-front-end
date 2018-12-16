@@ -1,0 +1,8 @@
+<mat-card class="card-container">
+  <mat-card-header fxLayout="column">
+      <mat-card-title class="text-center">Cupons</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <marvel-app-coupons-list [coupons]="coupons$ | async"></marvel-app-coupons-list>
+  </mat-card-content>
+</mat-card>

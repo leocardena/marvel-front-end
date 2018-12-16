@@ -6,7 +6,6 @@
       "jasmine",
       "node"
     ],
-    "baseUrl": ".",
     "rootDir": "./"
   },
   "files": [

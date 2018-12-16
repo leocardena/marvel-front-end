@@ -1,5 +1,5 @@
 <mat-card class="card-container">
-    <mat-card-header>
+    <mat-card-header fxLayout="column">
         <mat-card-title text-center>Checkout</mat-card-title>
     </mat-card-header>
     <mat-card-content>
@@ -9,11 +9,9 @@
         (removeComicFromCheckout)="removeComicFromCheckout($event)">
       </marvel-app-checkout-items-list>
     </mat-card-content>
-    <mat-card-footer>
-      <p>Total do Checkout: </p> {{ totalPrice$ | async | currency:'BRL' }}
+    <mat-card-footer fxLayout="row" fxLayoutAlign="flex-end flex-end">
+        <p *ngIf="(comics$ | async)?.length > 0" class="total-price">
+          Total do Checkout: {{ totalPrice$ | async | currency:'BRL' }}
+        </p>
     </mat-card-footer>
 </mat-card>
-
-<!--<ul *ngFor="let coupon of coupons$ | async">
-  <li> {{ coupon }} </li>
-</ul>-->

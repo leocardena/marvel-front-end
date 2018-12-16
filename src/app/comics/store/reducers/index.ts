@@ -8,6 +8,7 @@ import * as fromComics from '@marvel-app/comics/store/reducers/comics.reducer';
 import * as fromCheckout from '@marvel-app/comics/store/reducers/checkout.reducer';
 import * as fromCoupons from '@marvel-app/comics/store/reducers/coupons.reducer';
 import * as fromRoot from '@marvel-app/store/reducers';
+import { Discount } from '@marvel-app/core/utils/discount.enum';
 
 export interface ComicsState {
   comics: fromComics.State;
@@ -177,7 +178,13 @@ export const getTotalCheckoutPrice = createSelector(
               return 0;
             }
 
-            return printPrices[0].price;
+            let printPrice: number = printPrices[0].price;
+
+            if (comic.hasDiscount) {
+              printPrice = printPrice - (printPrice * (Discount.Percentage / 100));
+            }
+
+            return printPrice;
           }
 
           return 0;

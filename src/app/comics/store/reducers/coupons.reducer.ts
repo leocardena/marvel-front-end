@@ -1,11 +1,12 @@
 import {
   CheckoutPageActions,
-  ComicsApiActions
+  ComicsApiActions,
+  CouponsPageActions
 } from '@marvel-app/comics/store/actions';
-import { coupons } from '@marvel-app/core/utils/coupons.mock';
+import { Coupon } from '@marvel-app/comics/models/coupon.model';
 
 export interface State {
-  coupons: string[];
+  coupons: Coupon[];
   loading: boolean;
   validating: boolean;
   error: any;
@@ -23,9 +24,10 @@ export function reducer(
   action:
     | CheckoutPageActions.CheckoutPageActionsUnion
     | ComicsApiActions.ComicsApiActionsUnion
+    | CouponsPageActions.CouponsPageActionsUnion
 ): State {
   switch (action.type) {
-    case CheckoutPageActions.CheckoutPageActionTypes.SearchCoupons:
+    case CouponsPageActions.CouponsPageActionTypes.SearchCoupons:
     case CheckoutPageActions.CheckoutPageActionTypes.ValidateCoupon:
       return {
         ...state,

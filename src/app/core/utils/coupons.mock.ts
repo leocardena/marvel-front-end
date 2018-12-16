@@ -1,4 +1,6 @@
-export const coupons = [
+import { Coupon } from '@marvel-app/comics/models/coupon.model';
+
+export const coupons: Coupon[] = [
   {
     'id': 1000,
     'value': 'RARE1',
@@ -11,12 +13,22 @@ export const coupons = [
   },
   {
     'id': 3000,
+    'value': 'RARE3',
+    'rarity': 'Rare'
+  },
+  {
+    'id': 4000,
     'value': 'COMMON1',
     'rarity': 'Common'
   },
   {
-    'id': 4000,
+    'id': 5000,
     'value': 'COMMON2',
+    'rarity': 'Common'
+  },
+  {
+    'id': 6000,
+    'value': 'COMMON3',
     'rarity': 'Common'
   }
 ];

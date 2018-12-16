@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
-import { Comic } from '@marvel-app/comics/models/comic.model';
+import { Coupon } from '@marvel-app/comics/models/coupon.model';
 
 @Injectable()
 export class CouponsService {
@@ -17,10 +16,8 @@ export class CouponsService {
   *
   * @returns http response containing a array of coupons
   */
-  searchCoupons(): Observable<string[]> {
-    return this.http.get(this.URL).pipe(
-      map((response: any) => response.results.map(result => result.value))
-    );
+  searchCoupons(): Observable<Coupon[]> {
+    return this.http.get<Coupon[]>(this.URL);
   }
 
  /**

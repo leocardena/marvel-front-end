@@ -1,6 +1,6 @@
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { Comic } from '@marvel-app/comics/models/comic.model';
 import * as fromComics from '@marvel-app/comics/store/reducers';
@@ -11,20 +11,14 @@ import {  CheckoutPageActions } from '@marvel-app/comics/store/actions';
   templateUrl: './checkout-page.component.html',
   styleUrls: ['./checkout-page.component.scss']
 })
-export class CheckoutPageComponent implements OnInit {
+export class CheckoutPageComponent {
 
   comics$: Observable<Comic[]>;
-  coupons$: Observable<string[]>;
   totalPrice$: Observable<number>;
 
   constructor(private store: Store<fromComics.State>) {
     this.comics$ = this.store.pipe(select(fromComics.getCheckoutComics));
-    this.coupons$ = this.store.pipe(select(fromComics.getCoupons));
     this.totalPrice$ = this.store.pipe(select(fromComics.getTotalCheckoutPrice));
-  }
-
-  ngOnInit() {
-    this.store.dispatch(new CheckoutPageActions.SearchCoupons());
   }
 
   validateCoupon({ comic, coupon }) {
