@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, take, switchMap } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
+import { map, take, switchMap, catchError } from 'rxjs/operators';
+import { Observable, of, throwError } from 'rxjs';
 import { State, select } from '@ngrx/store';
+import { Router } from '@angular/router';
 
 import { Comic } from '@marvel-app/comics/models/comic.model';
 import { GetBaseResponse } from '@marvel-app/shared/models/get-base-response.model';
@@ -17,6 +18,7 @@ export class MarvelComicsService {
 
   constructor(
     private http: HttpClient,
+    private router: Router,
     private store: State<fromComics.State>
   ) { }
 
@@ -53,13 +55,19 @@ export class MarvelComicsService {
 
         return this.http
           .get<{ data: GetBaseResponse<Comic> }>(`${this.URL}/${comicId}`)
-          .pipe(map(response => {
-            const baseResponse: GetBaseResponse<Comic> = response.data;
-            const comic: Comic = baseResponse.results[0];
-            comic.rarity = this.commonRarity;
-            baseResponse.results = [comic];
-            return baseResponse;
-          }));
+          .pipe(
+            map(response => {
+              const baseResponse: GetBaseResponse<Comic> = response.data;
+              const comic: Comic = baseResponse.results[0];
+              comic.rarity = this.commonRarity;
+              baseResponse.results = [comic];
+              return baseResponse;
+            }),
+            catchError(error => {
+              this.router.navigate(['/404']);
+              return throwError(error);
+            })
+          );
       })
     );
   }

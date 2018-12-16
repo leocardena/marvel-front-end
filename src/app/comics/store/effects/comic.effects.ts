@@ -60,6 +60,6 @@ export class ComicEffects {
     private actions$: Actions,
     private marvelComicsService: MarvelComicsService,
     private rootStore: Store<fromRoot.State>,
-    private store: Store<fromComics.State>,
+    private store: Store<fromComics.State>
   ) {}
 }
