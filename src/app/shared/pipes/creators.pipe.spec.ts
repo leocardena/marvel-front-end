@@ -1,4 +1,4 @@
-// import { CreatorsPipe } from './creators.pipe';
+// import { CreatorsPipe } from '@marvel-app/shared/pipes/creators.pipe';
 
 // describe('CreatorsPipe', () => {
 //   it('create an instance', () => {

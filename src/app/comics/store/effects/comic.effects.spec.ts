@@ -3,20 +3,22 @@
 // import { Observable } from 'rxjs';
 
 // import { ComicEffects } from './comic.effects';
+// import { MarvelComicsService } from '@marvel-app/comics/services/marvel/marvel-comics.service';
 
 // describe('ComicEffectsEffects', () => {
-//   const actions$: Observable<any>;
-//   let effects: ComicEffectsEffects;
+//   const actions$: Observable<any> = undefined;
+//   let effects: ComicEffects;
 
 //   beforeEach(() => {
 //     TestBed.configureTestingModule({
 //       providers: [
-//         ComicEffectsEffects,
+//         ComicEffects,
+//         MarvelComicsService,
 //         provideMockActions(() => actions$)
 //       ]
 //     });
 
-//     effects = TestBed.get(ComicEffectsEffects);
+//     effects = TestBed.get(ComicEffects);
 //   });
 
 //   it('should be created', () => {

@@ -11,7 +11,8 @@ module.exports = function (config) {
       require( 'karma-phantomjs-launcher' ),
       require('karma-jasmine-html-reporter'),
       require('karma-coverage-istanbul-reporter'),
-      require('@angular-devkit/build-angular/plugins/karma')
+      require('@angular-devkit/build-angular/plugins/karma'),
+      require('karma-spec-reporter'),
     ],
     client: {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
@@ -19,14 +20,31 @@ module.exports = function (config) {
     coverageIstanbulReporter: {
       dir: require('path').join(__dirname, '../coverage'),
       reports: ['html', 'lcovonly', 'text-summary'],
-      fixWebpackSourcePaths: true
+      fixWebpackSourcePaths: true,
+      combineBrowserReports: true,
+      skipFilesWithNoCoverage: true,
+      'report-config': {
+        html: {
+          subdir: 'html'
+        }
+      }
     },
-    reporters: ['progress', 'kjhtml'],
+    reporters: ['spec'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: false,
     browsers: ['PhantomJS'],
-    singleRun: true
+    singleRun: true,
+    verbose: true,
+    specReporter: {
+      maxLogLines: 5,             // limit number of lines logged per test
+      suppressErrorSummary: true, // do not print error summary
+      suppressFailed: false,      // do not print information about failed tests
+      suppressPassed: false,      // do not print information about passed tests
+      suppressSkipped: true,      // do not print information about skipped tests
+      showSpecTiming: false,      // print the time elapsed for each spec
+      failFast: true              // test would finish with error when a first fail occurs.
+    }
   });
 };

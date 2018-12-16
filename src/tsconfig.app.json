@@ -3,9 +3,13 @@
   "compilerOptions": {
     "outDir": "../out-tsc/app",
     "types": [],
+    "paths": {
+      "@marvel-app/*": ["./src/app/*"]
+    }
   },
   "exclude": [
     "test.ts",
-    "**/*.spec.ts"
+    "**/*.spec.ts",
+    "**/*.mock.ts"
   ]
 }
