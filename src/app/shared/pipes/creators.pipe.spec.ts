@@ -1,8 +1,8 @@
-import { CreatorsPipe } from './creators.pipe';
+// import { CreatorsPipe } from './creators.pipe';
 
-describe('CreatorsPipe', () => {
-  it('create an instance', () => {
-    const pipe = new CreatorsPipe();
-    expect(pipe).toBeTruthy();
-  });
-});
+// describe('CreatorsPipe', () => {
+//   it('create an instance', () => {
+//     const pipe = new CreatorsPipe();
+//     expect(pipe).toBeTruthy();
+//   });
+// });

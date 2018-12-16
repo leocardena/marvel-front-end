@@ -1,6 +1,6 @@
 <div *ngIf="!isLoading; else loadingComic" fxLayoutAlign="center" fxLayout="column" fxFlexFill fxLayoutGap="1em">
     <div fxLayout="row" fxFlexAlign.xs="center">
-        <a  mat-raised-button [routerLink]="['/comics']">Voltar</a>
+        <a color="primary" mat-raised-button [routerLink]="['/comics']">Voltar</a>
     </div>
     <div fxLayout="column" fxLayoutAlign.xs="center center" fxFlexAlign.xs="center">
       <h2 class="comic-title">{{ comic.title }}</h2>
@@ -20,7 +20,7 @@
       <div fxFlex="1 1 50%" fxFlexAlign.xs="center">
           <p><strong>Formato: </strong> {{ comic.format }}</p>
           <p><strong>Data de Publicação: </strong> {{ comic.dates | onSaleDate }}</p>
-          <p><strong>Número de Páginas: </strong> {{ comic.pageCount }}</p>
+          <p *ngIf="comic.pageCount && comic.pageCount > 0"><strong>Número de Páginas: </strong> {{ comic.pageCount }}</p>
           <p *ngIf="comic.description">
             <strong>Descrição: </strong>
             <span [innerHTML]="comic.description"></span>
@@ -29,9 +29,9 @@
       <div fxFlex="1 1 20%" fxFlexAlign.xs="center" fxFlexOrder.xs="-1" class="price-box">
         <div fxLayout="column" fxLayoutGap="1em" fxFlexFill>
           <h2 fxFlexAlign="center">{{ comic.prices | price }}</h2>
-          <button *ngIf="!isSelectedComicInCheckout; else removeButton" mat-raised-button (click)="addToCheckout.emit(comic)">Adicionar</button>
+          <button color="primary" *ngIf="!isSelectedComicInCheckout; else removeButton" mat-raised-button (click)="addToCheckout.emit(comic)">Adicionar</button>
           <ng-template #removeButton>
-            <button mat-raised-button (click)="removeFromCheckout.emit(comic)">Remover</button>
+            <button mat-raised-button color="primary" (click)="removeFromCheckout.emit(comic)">Remover</button>
           </ng-template>
         </div>
       </div>
