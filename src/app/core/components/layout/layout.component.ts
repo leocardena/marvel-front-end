@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { MatSidenav } from '@angular/material';
 
 @Component({
   selector: 'marvel-app-layout',
@@ -11,6 +12,7 @@ import { map } from 'rxjs/operators';
 export class LayoutComponent implements OnInit {
 
   isHandset$: Observable<boolean>;
+  @ViewChild('sidenav') sidenav: MatSidenav;
 
   constructor(private breakpointObserver: BreakpointObserver) {}
 

@@ -4,9 +4,9 @@
       [mode]="(isHandset$ | async) ? 'over' : 'side'">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item [routerLink]="['/comics']">Quadrinhos</a>
-      <a mat-list-item [routerLink]="['/comics/checkout']">Checkout</a>
-      <a mat-list-item [routerLink]="['/comics/coupons']">Cupons</a>
+      <a mat-list-item (click)="drawer.toggle()" [routerLink]="['/comics']">Quadrinhos</a>
+      <a mat-list-item (click)="drawer.toggle()" [routerLink]="['/comics/checkout']">Checkout</a>
+      <a mat-list-item (click)="drawer.toggle()" [routerLink]="['/comics/coupons']">Cupons</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -20,7 +20,7 @@
       </button>
       <span>marvel-front-end</span>
     </mat-toolbar>
-    <div fxLayout="row" fxLayoutAlign="center">
+    <div fxLayout="row" fxFlexFill fxLayoutAlign="center" (click)="drawer.opened ? drawer.toggle() : undefined">
         <div fxFlex.gt-sm="60" fxFlex.xs="95">
             <ng-content></ng-content>
         </div>
