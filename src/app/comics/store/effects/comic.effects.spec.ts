@@ -1,27 +1,27 @@
-// import { TestBed, inject } from '@angular/core/testing';
-// import { provideMockActions } from '@ngrx/effects/testing';
-// import { Observable } from 'rxjs';
+import { TestBed, inject } from '@angular/core/testing';
+import { provideMockActions } from '@ngrx/effects/testing';
+import { Observable } from 'rxjs';
 
-// import { ComicEffects } from './comic.effects';
-// import { MarvelComicsService } from '@marvel-app/comics/services/marvel/marvel-comics.service';
+import { ComicEffects } from './comic.effects';
+import { MarvelComicsService } from '@marvel-app/comics/services/marvel/marvel-comics.service';
 
-// describe('ComicEffectsEffects', () => {
-//   const actions$: Observable<any> = undefined;
-//   let effects: ComicEffects;
+xdescribe('ComicEffectsEffects', () => {
+  const actions$: Observable<any> = undefined;
+  let effects: ComicEffects;
 
-//   beforeEach(() => {
-//     TestBed.configureTestingModule({
-//       providers: [
-//         ComicEffects,
-//         MarvelComicsService,
-//         provideMockActions(() => actions$)
-//       ]
-//     });
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [
+        ComicEffects,
+        MarvelComicsService,
+        provideMockActions(() => actions$)
+      ]
+    });
 
-//     effects = TestBed.get(ComicEffects);
-//   });
+    effects = TestBed.get(ComicEffects);
+  });
 
-//   it('should be created', () => {
-//     expect(effects).toBeTruthy();
-//   });
-// });
+  it('should be created', () => {
+    expect(effects).toBeTruthy();
+  });
+});

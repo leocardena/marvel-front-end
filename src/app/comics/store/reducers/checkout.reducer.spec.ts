@@ -1,13 +1,13 @@
-// import { reducer, initialState } from './checkout.reducer';
+import { reducer, initialState } from './checkout.reducer';
 
-// describe('Checkout Reducer', () => {
-//   describe('unknown action', () => {
-//     it('should return the initial state', () => {
-//       const action = {} as any;
+xdescribe('Checkout Reducer', () => {
+  describe('unknown action', () => {
+    it('should return the initial state', () => {
+      const action = {} as any;
 
-//       const result = reducer(initialState, action);
+      const result = reducer(initialState, action);
 
-//       expect(result).toBe(initialState);
-//     });
-//   });
-// });
+      expect(result).toBe(initialState);
+    });
+  });
+});

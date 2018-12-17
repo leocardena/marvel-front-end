@@ -1,25 +1,25 @@
-// import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-// import { FindComicPageComponent } from './find-comic-page.component';
+import { FindComicPageComponent } from './find-comic-page.component';
 
-// describe('FindComicPageComponent', () => {
-//   let component: FindComicPageComponent;
-//   let fixture: ComponentFixture<FindComicPageComponent>;
+xdescribe('FindComicPageComponent', () => {
+  let component: FindComicPageComponent;
+  let fixture: ComponentFixture<FindComicPageComponent>;
 
-//   beforeEach(async(() => {
-//     TestBed.configureTestingModule({
-//       declarations: [ FindComicPageComponent ]
-//     })
-//     .compileComponents();
-//   }));
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [ FindComicPageComponent ]
+    })
+    .compileComponents();
+  }));
 
-//   beforeEach(() => {
-//     fixture = TestBed.createComponent(FindComicPageComponent);
-//     component = fixture.componentInstance;
-//     fixture.detectChanges();
-//   });
+  beforeEach(() => {
+    fixture = TestBed.createComponent(FindComicPageComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
-//   it('should create', () => {
-//     expect(component).toBeTruthy();
-//   });
-// });
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
