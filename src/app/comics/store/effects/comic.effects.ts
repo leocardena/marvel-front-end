@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Action, Store, select } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
-import { catchError, map, switchMap, withLatestFrom, filter } from 'rxjs/operators';
+import { catchError, map, withLatestFrom, filter, exhaustMap } from 'rxjs/operators';
 
 import {
   FindComicPageActions,
@@ -26,7 +26,7 @@ export class ComicEffects {
     ofType(FindComicPageActions.FindComicPageActionTypes.SearchComics),
     withLatestFrom(this.store.pipe(select(fromComics.getTotalComics))),
     filter(([action, total]) => total <= 1),
-    switchMap(() => {
+    exhaustMap(() => {
       const options = {
         offset: 0,
         limit: 15,
@@ -48,7 +48,7 @@ export class ComicEffects {
     ofType(ViewComicPageActions.ViewComicPageActionTypes.SearchComic),
     withLatestFrom(this.rootStore.pipe(select(fromRoot.getRouterState))),
     map(([action, router]) => router.state && router.state.params.id),
-    switchMap(id => this.marvelComicsService
+    exhaustMap(id => this.marvelComicsService
       .searchComic(id).pipe(
         map((response: GetBaseResponse<Comic>) => new ComicsApiActions.SearchOneSuccess(response.results[0])),
         catchError(error => of(new ComicsApiActions.SearchOneFailure(error)))

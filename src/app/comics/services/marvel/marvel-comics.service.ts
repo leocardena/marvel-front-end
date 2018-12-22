@@ -45,6 +45,7 @@ export class MarvelComicsService {
    * @returns an observable of GetBaseResponse<Comic>
    */
   searchComic(comicId: string): Observable<GetBaseResponse<Comic>> {
+    console.log('asdasdasdsad');
     return this.hasComicInStore(comicId).pipe(
       switchMap(inStore => {
         if (inStore) {
